@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Instrument Sans", ui-sans-serif, sans-serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-paper: #f2f4ef;
+  --color-card: #fbfcfa;
+  --color-ink: #15211b;
+  --color-inksoft: #4c5b53;
+  --color-inkfaint: #7d8b83;
+  --color-line: #dde3da;
+  --color-linedark: #2a3b32;
+
+  --color-pine-950: #0b1411;
+  --color-pine-900: #0f1b15;
+  --color-pine-850: #13221b;
+  --color-pine-800: #182a21;
+  --color-pine-700: #22382d;
+  --color-pine-600: #2f4a3c;
+  --color-pine-100: #d8e4dc;
+
+  --color-moss-50: #edf5f0;
+  --color-moss-100: #dceee4;
+  --color-moss-200: #bcddd0;
+  --color-moss-300: #8cc3ab;
+  --color-moss-400: #3e9c72;
+  --color-moss-500: #1f7a53;
+  --color-moss-600: #175f41;
+  --color-moss-700: #124c34;
+
+  --color-limey: #c9e86b;
+  --color-amber-100: #f6e9cd;
+  --color-amber-500: #d99a2b;
+  --color-amber-700: #8a5a12;
+  --color-clay-100: #f2dcd4;
+  --color-clay-500: #c05237;
+  --color-clay-700: #8c3823;
+  --color-sky-100: #dbe8f2;
+  --color-sky-500: #3d7eb0;
+  --color-sky-700: #29567c;
+
+  --shadow-card: 0 1px 2px rgba(21, 33, 27, 0.05), 0 4px 16px -6px rgba(21, 33, 27, 0.09);
+  --shadow-pop: 0 2px 6px rgba(21, 33, 27, 0.08), 0 18px 44px -12px rgba(21, 33, 27, 0.22);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- ambient layers ---------- */
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(900px 480px at 85% -8%, rgba(31, 122, 83, 0.09), transparent 62%),
+    radial-gradient(700px 420px at -10% 108%, rgba(61, 126, 176, 0.07), transparent 60%),
+    linear-gradient(rgba(21, 33, 27, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 33, 27, 0.028) 1px, transparent 1px);
+  background-size: auto, auto, 34px 34px, 34px 34px;
+}
+
+.console-scan {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(201, 232, 107, 0.022) 0px,
+    rgba(201, 232, 107, 0.022) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ---------- scrollbars ---------- */
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(21, 33, 27, 0.16);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 33, 27, 0.32);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll-dark::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-dark::-webkit-scrollbar-thumb {
+  background: rgba(216, 228, 220, 0.18);
+  border-radius: 99px;
+}
+
+/* ---------- motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes popin {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes slidein-r {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes logline {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes blinkc {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pulsering {
+  0% {
+    box-shadow: 0 0 0 0 rgba(62, 156, 114, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(62, 156, 114, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(62, 156, 114, 0);
+  }
+}
+@keyframes leasedash {
+  to {
+    background-position: 24px 0;
+  }
+}
+@keyframes barup {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes tickflash {
+  0% {
+    background-color: rgba(201, 232, 107, 0.16);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.anim-rise {
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.anim-pop {
+  animation: popin 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.anim-drawer {
+  animation: slidein-r 0.34s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.anim-log {
+  animation: logline 0.35s ease both;
+}
+.anim-flash {
+  animation: tickflash 1.4s ease-out both;
+}
+.cursor-blink::after {
+  content: "▍";
+  margin-left: 2px;
+  color: var(--color-limey);
+  animation: blinkc 1.1s step-end infinite;
+}
+.pulse-live {
+  animation: pulsering 2s ease-out infinite;
+}
+.lease-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(217, 154, 43, 0.14) 0 8px,
+    transparent 8px 16px
+  );
+  background-size: 24px 24px;
+  animation: leasedash 1.2s linear infinite;
+}
+.bar-anim {
+  transform-origin: bottom;
+  animation: barup 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.stagger > * {
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.02s; }
+.stagger > *:nth-child(2) { animation-delay: 0.07s; }
+.stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger > *:nth-child(4) { animation-delay: 0.17s; }
+.stagger > *:nth-child(5) { animation-delay: 0.22s; }
+.stagger > *:nth-child(6) { animation-delay: 0.27s; }
+.stagger > *:nth-child(7) { animation-delay: 0.32s; }
+.stagger > *:nth-child(8) { animation-delay: 0.37s; }
+
+/* ---------- primitives ---------- */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-moss-400);
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+::selection {
+  background: rgba(31, 122, 83, 0.22);
+}
